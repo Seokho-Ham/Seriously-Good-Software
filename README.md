@@ -1,7 +1,7 @@
 ## 📓 Seriously Good Software(소프트웨어의 품격)" 스터디
 
 ### 👫 참여자
-[@루이](https://github.com/Louie-03) [@후](https://github.com/who-hoo) [@쿠킴](github.com/ku-kim) [@제리](github.com/jeremy0405) [@포키](https://github.com/seokho-ham)
+[@루이](https://github.com/Louie-03) [@후](https://github.com/who-hoo) [@쿠킴](https://github.com/ku-kim) [@제리](https://github.com/jeremy0405) [@포키](https://github.com/seokho-ham)
 
 ### 📖 진행 상황
 
