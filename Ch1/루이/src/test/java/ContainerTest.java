@@ -23,23 +23,23 @@ class ContainerTest {
         a.connectTo(b);
         d.addWater(8);
 
-        assertEquals(0, a.getAmount());
-        assertEquals(0, b.getAmount());
+        assertEquals(6, a.getAmount());
+        assertEquals(6, b.getAmount());
         assertEquals(0, c.getAmount());
-        assertEquals(0, d.getAmount());
+        assertEquals(8, d.getAmount());
 
         b.connectTo(c);
 
-        assertEquals(0, a.getAmount());
-        assertEquals(0, b.getAmount());
-        assertEquals(0, c.getAmount());
-        assertEquals(0, d.getAmount());
+        assertEquals(4, a.getAmount());
+        assertEquals(4, b.getAmount());
+        assertEquals(4, c.getAmount());
+        assertEquals(8, d.getAmount());
 
         b.connectTo(d);
 
-        assertEquals(0, a.getAmount());
-        assertEquals(0, b.getAmount());
-        assertEquals(0, c.getAmount());
-        assertEquals(0, d.getAmount());
+        assertEquals(5, a.getAmount());
+        assertEquals(5, b.getAmount());
+        assertEquals(5, c.getAmount());
+        assertEquals(5, d.getAmount());
     }
 }
