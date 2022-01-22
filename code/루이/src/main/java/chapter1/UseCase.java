@@ -1,3 +1,5 @@
+package eis.chapter1;
+
 public class UseCase {
     public static void main(String[] args) {
         Container a = new Container();
