@@ -78,6 +78,6 @@
 
 ## 고민 사항 / 중점적으로 리뷰받고 싶은 부분
 
-Container Class 구현 시 중복없이 간접 연결, 직접 연결된 Container를 담고 싶어서 Set을 이용했는데 `Set<Container>` 에서 값을 꺼내서 처리해야 하는 상황이 많이 발생해서 Iterator를 여러번 사용했습니다. 더 좋은 설계 방법이 있을까요??
+speed1.Container Class 구현 시 중복없이 간접 연결, 직접 연결된 Container를 담고 싶어서 Set을 이용했는데 `Set<speed1.Container>` 에서 값을 꺼내서 처리해야 하는 상황이 많이 발생해서 Iterator를 여러번 사용했습니다. 더 좋은 설계 방법이 있을까요??
 
 _<!-- 함께 고민해주었으면 하는 부분 -->_
