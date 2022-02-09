@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91c6ddf2-fcb8-4c9f-9c4c-978216ff6e63" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter1/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter1/PracticeProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/PracticeProblem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter1/UseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/UseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter1/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch1/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/Appliance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/Appliance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/IntStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/IntStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/IntStatsFastSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/IntStatsFastSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed1/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed1/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed1/UseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed1/UseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed2/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed2/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed2/UseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed2/UseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed3/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed3/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/chapter3/speed3/UseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch3/speed3/UseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -62,22 +45,49 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="optimize.imports.on.save" value="true" />
-    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ABC\OneDrive\바탕 화면\git\Seriously-Good-Software\code\루이\src\main\java\ch5" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ABC\OneDrive\바탕 화면\git\Seriously-Good-Software\code\루이\src\main\java\ch4" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ch5" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ch5.invariants" />
       <recent name="ch4.memory4" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UniqueList">
+  <component name="RunManager" selected="Application.BoundedSet">
+    <configuration name="BoundedSet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch5.BoundedSet" />
+      <module name="software" />
+      <option name="PROGRAM_PARAMETERS" value="-ea" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch5.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UniqueList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch4.UniqueList" />
       <module name="software" />
@@ -104,10 +114,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UseCase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch5.contracts.UseCase" />
+      <module name="software" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch5.contracts.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch5.main" />
+      <module name="software" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch5.contracts.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.BoundedSet" />
+      <item itemvalue="Application.main" />
+      <item itemvalue="Application.UniqueList" />
+      <item itemvalue="Application.UseCase" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UniqueList" />
+        <item itemvalue="Application.BoundedSet" />
         <item itemvalue="Application.UseCase" />
+        <item itemvalue="Application.UseCase" />
+        <item itemvalue="Application.main" />
+        <item itemvalue="Application.UniqueList" />
       </list>
     </recent_temporary>
   </component>
@@ -125,6 +170,13 @@
       <workItem from="1643231257526" duration="6200000" />
       <workItem from="1643327875505" duration="3929000" />
       <workItem from="1643438843088" duration="6085000" />
+      <workItem from="1643929013895" duration="1481000" />
+      <workItem from="1643974180523" duration="1341000" />
+      <workItem from="1643979363690" duration="3961000" />
+      <workItem from="1644027025564" duration="13030000" />
+      <workItem from="1644047798622" duration="4864000" />
+      <workItem from="1644233775198" duration="1046000" />
+      <workItem from="1644443917878" duration="83000" />
     </task>
     <servers />
   </component>
@@ -142,6 +194,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch5/contracts/Container.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
