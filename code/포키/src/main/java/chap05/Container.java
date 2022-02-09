@@ -1,4 +1,4 @@
-package code.포키.src.main.java.chap05;
+package chap05;
 
 import java.util.HashSet;
 import java.util.Objects;
