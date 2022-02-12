@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Speed1_Container.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap03</a> &gt; <span class="el_source">Speed1_Container.java</span></div><h1>Speed1_Container.java</h1><pre class="source lang-java linenums">package chap03;
+
+import java.util.HashSet;
+import java.util.Set;
+
+<span class="nc" id="L6">public class Speed1_Container {</span>
+<span class="nc" id="L7">    private Group group = new Group(this);</span>
+
+    private static class Group {
+        double amountPerContainer;
+        Set&lt;Speed1_Container&gt; members;
+
+<span class="nc" id="L13">        Group(Speed1_Container c) {</span>
+<span class="nc" id="L14">            members = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L15">            members.add(c);</span>
+<span class="nc" id="L16">        }</span>
+    }
+
+<span class="nc" id="L19">    public double getAmount() { return group.amountPerContainer; }</span>
+
+    public void addWater(double amount) {
+<span class="nc" id="L22">        double amountPerContainer = amount / group.members.size();</span>
+<span class="nc" id="L23">        group.amountPerContainer += amountPerContainer;</span>
+<span class="nc" id="L24">    }</span>
+
+    public void connectTo(Speed1_Container other) {
+
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (group==other.group) return;</span>
+
+<span class="nc" id="L30">        int size1 =       group.members.size(),</span>
+<span class="nc" id="L31">                size2 = other.group.members.size();</span>
+<span class="nc" id="L32">        double tot1 =       group.amountPerContainer * size1,</span>
+<span class="nc" id="L33">                tot2 = other.group.amountPerContainer * size2,</span>
+<span class="nc" id="L34">                newAmount = (tot1 + tot2) / (size1 + size2);</span>
+
+<span class="nc" id="L36">        group.members.addAll(other.group.members);</span>
+<span class="nc" id="L37">        group.amountPerContainer = newAmount;</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for (Speed1_Container x: other.group.members) x.group = group;</span>
+<span class="nc" id="L39">    }</span>
+
+    //현재 그룹의 사이즈
+    public int groupSize() {
+<span class="nc" id="L43">        return group.members.size();</span>
+    }
+
+    //모든 물을 0으로!!
+    public void flush() {
+<span class="nc" id="L48">        group.amountPerContainer = 0;</span>
+<span class="nc" id="L49">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

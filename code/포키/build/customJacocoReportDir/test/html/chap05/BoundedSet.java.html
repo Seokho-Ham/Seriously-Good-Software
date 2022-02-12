@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BoundedSet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap05</a> &gt; <span class="el_source">BoundedSet.java</span></div><h1>BoundedSet.java</h1><pre class="source lang-java linenums">package chap05;
+
+import java.util.*;
+
+<span class="nc bnc" id="L5" title="All 2 branches missed.">public class BoundedSet&lt;T&gt; {</span>
+    private final LinkedList&lt;T&gt; data;
+    private final int capacity;
+
+<span class="nc" id="L9">    public BoundedSet(int capacity) {</span>
+<span class="nc" id="L10">        this.data = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L11">        this.capacity = capacity;</span>
+<span class="nc" id="L12">    }</span>
+
+<span class="nc" id="L14">    public BoundedSet(BoundedSet&lt;T&gt; other) {</span>
+<span class="nc" id="L15">        data = new LinkedList&lt;&gt;(other.data);</span>
+<span class="nc" id="L16">        capacity = other.capacity;</span>
+<span class="nc" id="L17">    }</span>
+
+    //주어진 요소를 크기가 정해진 집합에 추가한다.
+    //용량 초과 시 가장 오래 된 요소를 제거해야한다.
+    //이미 존재하는 요소를 추가하면 해당 요소를 가장 최신 요소의 자리로 이동해야한다.
+
+    //사전 조건 : null이 아니다
+    //페널티 : NullPointerException 던지기
+
+    public void add(T elem) {
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (elem == null) {</span>
+<span class="nc" id="L28">            throw new NullPointerException();</span>
+        }
+
+<span class="nc" id="L31">        BoundedSet&lt;T&gt; copy = null;</span>
+<span class="nc bnc" id="L32" title="All 4 branches missed.">        assert (copy = new BoundedSet&lt;&gt;(this)) != null;</span>
+
+<span class="nc" id="L34">        data.remove(elem);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (data.size() == capacity) {</span>
+<span class="nc" id="L36">            data.removeFirst();</span>
+        }
+<span class="nc" id="L38">        data.addLast(elem);</span>
+
+<span class="nc bnc" id="L40" title="All 4 branches missed.">        assert postAdd(copy, elem) : &quot;실패!!!&quot;;</span>
+<span class="nc" id="L41">    }</span>
+    public void add_v2(T elem) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (elem == null) {</span>
+<span class="nc" id="L44">            throw new NullPointerException();</span>
+        }
+<span class="nc" id="L46">        data.remove(elem);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (data.size() == capacity) {</span>
+<span class="nc" id="L48">            data.removeFirst();</span>
+        }
+<span class="nc" id="L50">        data.addLast(elem);</span>
+
+<span class="nc bnc" id="L52" title="All 4 branches missed.">        assert checkInvariants() : &quot;실패!!!&quot;;</span>
+<span class="nc" id="L53">    }</span>
+
+
+    private boolean postAdd(BoundedSet&lt;T&gt; copy, T elem) {
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if(data.getLast().equals(elem)) return false;</span>
+
+<span class="nc" id="L59">        List&lt;T&gt; copyOfCurrent = new ArrayList&lt;&gt;(data);</span>
+<span class="nc" id="L60">        copyOfCurrent.remove(elem);</span>
+<span class="nc" id="L61">        copy.data.remove(elem);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (copy.data.size() == capacity) {</span>
+<span class="nc" id="L63">            copy.data.removeFirst();</span>
+        }
+<span class="nc" id="L65">        return copy.data.equals(copyOfCurrent);</span>
+    }
+
+    private boolean checkInvariants() {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (data.size() &gt; capacity) {</span>
+<span class="nc" id="L70">            return false;</span>
+        }
+
+<span class="nc" id="L73">        Set&lt;T&gt; elements = new HashSet&lt;&gt;();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        for (T element : data) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (!elements.add(element)) {</span>
+<span class="nc" id="L76">                return false;</span>
+            }
+<span class="nc" id="L78">        }</span>
+<span class="nc" id="L79">        return true;</span>
+    }
+
+    // 크기가 정해진 집합에 주어진 요소가 존재하면 true를 리턴한다.
+    //사전 조건 : null이 아니다.
+    //페널티 : NullPointerException 던지기
+    public boolean contains(T elem) {
+<span class="nc" id="L86">        return data.contains(elem);</span>
+    }
+}
+
+//요소의 삽입 순서를 기억한다.
+// 객체 생성 시 정해지는 최대 크기인 용량이 존재한다.
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

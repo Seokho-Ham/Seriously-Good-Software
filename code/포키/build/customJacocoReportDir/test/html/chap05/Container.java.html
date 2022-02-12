@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Container.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap05</a> &gt; <span class="el_source">Container.java</span></div><h1>Container.java</h1><pre class="source lang-java linenums">package chap05;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+<span class="nc bnc" id="L7" title="All 2 branches missed.">public class Container {</span>
+    private Set&lt;Container&gt; group;
+    private double amount;
+
+    //사전 조건 : 인자가 음수일 경우, 그룹에 충분한 물이 존재한다.
+    //사후 조건 : 그룹에 속하는 모든 수조에 같은 양의 물을 분배한다.
+    //페널티 : IllegalArgumentException을 던진다.
+    public void addWater(double amount) {
+<span class="nc" id="L15">        double amountPerContainer = amount / group.size();</span>
+
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (this.amount + amountPerContainer &lt; 0) {</span>
+<span class="nc" id="L18">            throw new IllegalArgumentException(&quot;물이 부족해용&quot;);</span>
+        }
+        //2번
+<span class="nc" id="L21">        double oldTotal = 0;</span>
+<span class="nc bnc" id="L22" title="All 4 branches missed.">        assert (oldTotal = groupAmount()) &gt;= 0;</span>
+
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        for (Container c : group) {</span>
+<span class="nc" id="L25">            c.amount += amountPerContainer;</span>
+<span class="nc" id="L26">        }</span>
+        //4번
+<span class="nc bnc" id="L28" title="All 4 branches missed.">        assert postAddWater(oldTotal, amount) : &quot;addWater failed its postcondition&quot;;</span>
+<span class="nc" id="L29">    }</span>
+
+    public void connectTo(Container other) {
+<span class="nc" id="L32">        Objects.requireNonNull(other,&quot;null이면 안돼요&quot;);</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(group==other.group) return;</span>
+
+<span class="nc" id="L35">        ConnectPostData postData = null;</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">        assert (postData = saveConnectPostData(other)) != null;</span>
+
+<span class="nc" id="L38">        int size1 = group.size(),</span>
+<span class="nc" id="L39">                size2 = other.group.size();</span>
+<span class="nc" id="L40">        double tot1 = amount * size1,</span>
+<span class="nc" id="L41">                tot2 = other.amount * size2,</span>
+<span class="nc" id="L42">                newAmount = (tot1 + tot2) / (size1 + size2);</span>
+
+<span class="nc" id="L44">        group.addAll(other.group);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        for (Container c: other.group) c.group = group;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        for (Container c: group) c.amount = newAmount;</span>
+
+<span class="nc bnc" id="L48" title="All 4 branches missed.">        assert postConnect(postData) : &quot;connectTo failed its postcondition&quot;;</span>
+
+<span class="nc" id="L50">    }</span>
+
+    public void addWater_v2(double amount) {
+<span class="nc" id="L53">        double amountPerContainer = amount / group.size();</span>
+
+<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (this.amount + amountPerContainer &lt; 0) {</span>
+<span class="nc" id="L56">            throw new IllegalArgumentException(&quot;물이 부족해용&quot;);</span>
+        }
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (Container c : group) {</span>
+<span class="nc" id="L60">            c.amount += amountPerContainer;</span>
+<span class="nc" id="L61">        }</span>
+        //4번
+<span class="nc bnc" id="L63" title="All 4 branches missed.">        assert invariantsArePreservedByAddWater() : &quot;addWater failed its postcondition&quot;;</span>
+<span class="nc" id="L64">    }</span>
+
+    private boolean invariantsArePreservedByAddWater() {
+<span class="nc bnc" id="L67" title="All 4 branches missed.">        return isGroupNonNegative() &amp;&amp; isGroupBalanced();</span>
+    }
+
+    public void connectTo_v2(Container other) {
+<span class="nc" id="L71">        Objects.requireNonNull(other,&quot;null 이면 안돼요!&quot;);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(group==other.group) return;</span>
+
+<span class="nc" id="L74">        int size1 = group.size(),</span>
+<span class="nc" id="L75">                size2 = other.group.size();</span>
+<span class="nc" id="L76">        double tot1 = amount * size1,</span>
+<span class="nc" id="L77">                tot2 = other.amount * size2,</span>
+<span class="nc" id="L78">                newAmount = (tot1 + tot2) / (size1 + size2);</span>
+
+<span class="nc" id="L80">        group.addAll(other.group);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        for (Container c: other.group) c.group = group;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        for (Container c: group) c.amount = newAmount;</span>
+
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        assert invariantsArePreservedByConnectTo(other) : &quot;connectTo failed its postcondition&quot;;</span>
+
+<span class="nc" id="L86">    }</span>
+
+    private boolean invariantsArePreservedByConnectTo(Container other) {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        return group == other &amp;&amp;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                isGroupNonNegative()&amp;&amp;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                isGroupBalanced()&amp;&amp;</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                isGroupConsistent();</span>
+    }
+
+    private boolean isGroupNonNegative() {
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        for (Container c : group) {</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if(c.amount &lt; 0) return false;</span>
+<span class="nc" id="L98">        }</span>
+<span class="nc" id="L99">        return true;</span>
+    }
+
+    private boolean postConnect(ConnectPostData postData) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        return areGroupMembersCorrect(postData)</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                &amp;&amp; isGroupAmountCorrect(postData)</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                &amp;&amp; isGroupBalanced()</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">                &amp;&amp; isGroupConsistent();</span>
+    }
+
+    private boolean isGroupConsistent() {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        for (Container c : group) {</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if(c.group != group) return false;</span>
+<span class="nc" id="L112">        }</span>
+<span class="nc" id="L113">        return true;</span>
+    }
+
+    private boolean isGroupAmountCorrect(ConnectPostData postData) {
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        return amount == postData.amount1 + postData.amount2;</span>
+    }
+
+    private boolean areGroupMembersCorrect(ConnectPostData postData) {
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        return group.containsAll(postData.group1)</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                &amp;&amp; group.containsAll(postData.group2)</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">                &amp;&amp; group.size() == postData.group1.size() + postData.group2.size();</span>
+    }
+
+    private ConnectPostData saveConnectPostData(Container other) {
+<span class="nc" id="L127">        ConnectPostData data = new ConnectPostData();</span>
+<span class="nc" id="L128">        data.group1 = new HashSet&lt;&gt;(group);</span>
+<span class="nc" id="L129">        data.group2 = new HashSet&lt;&gt;(other.group);</span>
+<span class="nc" id="L130">        data.amount1 = amount;</span>
+<span class="nc" id="L131">        data.amount2 = other.amount;</span>
+
+<span class="nc" id="L133">        return data;</span>
+    }
+
+    private boolean postAddWater(double oldTotal, double amount) {
+<span class="nc bnc" id="L137" title="All 4 branches missed.">        return isGroupBalanced() &amp;&amp; almostEqual(groupAmount(),oldTotal + amount);</span>
+    }
+
+    private boolean almostEqual(double x, double y) {
+<span class="nc" id="L141">        final double EPSLION = 1E-4;</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        return Math.abs(x - y) &lt; EPSLION;</span>
+    }
+
+
+    private boolean isGroupBalanced() {
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        for (Container x : group) {</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if(x.amount != amount) return false;</span>
+<span class="nc" id="L149">        }</span>
+<span class="nc" id="L150">        return true;</span>
+    }
+
+    private double groupAmount() {
+<span class="nc" id="L154">        double total = 0;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        for (Container c : group) {</span>
+<span class="nc" id="L156">            total += c.amount;</span>
+<span class="nc" id="L157">        }</span>
+<span class="nc" id="L158">        return total;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

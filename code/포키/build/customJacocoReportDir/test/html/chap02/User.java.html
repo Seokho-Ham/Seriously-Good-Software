@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap02</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package chap02;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class User {
+    private String userName;
+    private Set&lt;User&gt; directConnectedGroup;
+    private Set&lt;User&gt; indirectConnectedGroup;
+
+<span class="nc" id="L11">    public User(String userName) {</span>
+<span class="nc" id="L12">        this.userName = userName;</span>
+<span class="nc" id="L13">        directConnectedGroup = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L14">        indirectConnectedGroup = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L15">    }</span>
+
+    public void befriend(User other) {
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (!isDirectFriendOf(other)) {</span>
+<span class="nc" id="L19">            directConnectedGroup.add(other);</span>
+<span class="nc" id="L20">            other.directConnectedGroup.add(this);</span>
+        }
+<span class="nc" id="L22">    }</span>
+
+    public boolean isDirectFriendOf(User other) {
+<span class="nc" id="L25">        return directConnectedGroup.contains(other);</span>
+    }
+    public boolean isIndirectFriendOf(User other) {
+        //현재 directFriend를 순환한다.
+        //순환하는 과정에서 other이 directfriend알 경우 true, 아니면 false
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        for (User friend : directConnectedGroup) {</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (friend.isDirectFriendOf(other)) {</span>
+<span class="nc" id="L32">                return true;</span>
+            }
+<span class="nc" id="L34">        }</span>
+<span class="nc" id="L35">        return false;</span>
+    }
+}
+
+
+//요구사항
+// 이름을 담는 변수가 있다. 이름을 매개변수로 받는 생성자를 만들것.
+// 친구 관계를 맺는 메서드가 있다. 친구 관계는 대칭적이다.
+// 직접 친구인지 간접친구인지 판별하는 메서드가 있다.
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
