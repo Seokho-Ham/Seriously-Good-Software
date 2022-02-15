@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Container.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap01</a> &gt; <span class="el_source">Container.java</span></div><h1>Container.java</h1><pre class="source lang-java linenums">package chap01;
+
+import java.util.HashSet;
+import java.util.Set;
+
+<span class="nc" id="L6">public class Container {</span>
+    private double amount;
+<span class="nc" id="L8">    private Set&lt;Container&gt; directConnectionGroup = new HashSet&lt;&gt;();</span>
+<span class="nc" id="L9">    private Set&lt;Container&gt; indirectConnectionGroup = new HashSet&lt;&gt;();</span>
+
+    public double getAmount() {
+<span class="nc" id="L12">        return amount;</span>
+    }
+
+    public void connectTo(Container other) {
+<span class="nc" id="L16">        makeDirectConnection(other);</span>
+<span class="nc" id="L17">        makeIndirectConnection(other);</span>
+<span class="nc" id="L18">        redistributeWater(other);</span>
+<span class="nc" id="L19">    }</span>
+
+    public void addWater(double amount) {
+<span class="nc" id="L22">        this.amount += amount;</span>
+<span class="nc" id="L23">    }</span>
+
+    private void makeDirectConnection(Container other) {
+<span class="nc" id="L26">        directConnectionGroup.add(other);</span>
+<span class="nc" id="L27">        other.directConnectionGroup.add(this);</span>
+<span class="nc" id="L28">    }</span>
+
+    private void makeIndirectConnection(Container other) {
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (indirectConnectionGroup.size() != 0) {</span>
+<span class="nc" id="L32">            indirectConnectionGroup.forEach(s -&gt; {</span>
+<span class="nc" id="L33">                s.indirectConnectionGroup.add(other);</span>
+<span class="nc" id="L34">                other.indirectConnectionGroup.add(s);</span>
+<span class="nc" id="L35">            });</span>
+        }
+<span class="nc" id="L37">    }</span>
+
+    private void redistributeWater(Container other) {
+<span class="nc" id="L40">        int connectedContainerCount = directConnectionGroup.size() + indirectConnectionGroup.size();</span>
+<span class="nc" id="L41">        double newAmount = ((amount * connectedContainerCount) + other.amount) / (connectedContainerCount+1);</span>
+<span class="nc" id="L42">        amount = newAmount;</span>
+<span class="nc" id="L43">        directConnectionGroup.forEach(s -&gt; s.amount = newAmount);</span>
+<span class="nc" id="L44">        indirectConnectionGroup.forEach(s -&gt; s.amount = newAmount);</span>
+<span class="nc" id="L45">    }</span>
+}
+
+//요구사항
+// - 서로 연결 가능한 수조를 만든다.
+// - 각각의 수조는 하나의 인스턴스.
+//      - 물을 담을 수 있는 변수를 가지고 있다.
+//      - 서로를 연결할 수 있는 파이프 메서드가 존재한다.
+//      - 연결이 되면 가지고 서로 가지고 있는 물을 같은 값으로 나눠 갖는다.
+//      - 직접 연결, 간접 연결된 데이터를 저장해야한다.
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

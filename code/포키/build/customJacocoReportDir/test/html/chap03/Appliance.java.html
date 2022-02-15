@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Appliance.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap03</a> &gt; <span class="el_source">Appliance.java</span></div><h1>Appliance.java</h1><pre class="source lang-java linenums">package chap03;
+
+import java.util.Objects;
+
+public class Appliance {
+    private int energy;
+    private boolean power;
+    private Grid connectedGrid;
+
+<span class="nc" id="L10">    public Appliance(int useEnergy) {</span>
+<span class="nc" id="L11">        this.energy = useEnergy;</span>
+<span class="nc" id="L12">        this.power = false;</span>
+<span class="nc" id="L13">    }</span>
+
+    public void plugIn(Grid grid) {
+<span class="nc bnc" id="L16" title="All 4 branches missed.">        if (connectedGrid!= null &amp;&amp; connectedGrid != grid) {</span>
+<span class="nc" id="L17">            connectedGrid.restoreEnergy(energy);</span>
+        }
+<span class="nc" id="L19">        connectedGrid = grid;</span>
+<span class="nc" id="L20">    }</span>
+
+    public void on() throws Exception {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (connectedGrid.getRemainingEnergy() &lt; energy) {</span>
+<span class="nc" id="L24">            throw new IllegalArgumentException(&quot;전력 부족&quot;);</span>
+        }
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (power) {</span>
+<span class="nc" id="L27">            System.out.println(&quot;이미 켜져있는 상태입니다.&quot;);</span>
+<span class="nc" id="L28">            return;</span>
+        }
+<span class="nc" id="L30">        connectedGrid.useEnergy(energy);</span>
+<span class="nc" id="L31">        power = true;</span>
+<span class="nc" id="L32">    }</span>
+
+    public void off() {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!power) {</span>
+<span class="nc" id="L36">            System.out.println(&quot;이미 꺼져있는 상태입니다.&quot;);</span>
+<span class="nc" id="L37">            return;</span>
+        }
+<span class="nc" id="L39">        power = false;</span>
+<span class="nc" id="L40">        connectedGrid.restoreEnergy(energy);</span>
+<span class="nc" id="L41">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

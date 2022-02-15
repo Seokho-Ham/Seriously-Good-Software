@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Speed3_Container.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">포키</a> &gt; <a href="index.source.html" class="el_package">chap03</a> &gt; <span class="el_source">Speed3_Container.java</span></div><h1>Speed3_Container.java</h1><pre class="source lang-java linenums">package chap03;
+
+<span class="nc" id="L3">public class Speed3_Container {</span>
+    private double amount;
+<span class="nc" id="L5">    private Speed3_Container parent = this;</span>
+<span class="nc" id="L6">    private int size = 1;</span>
+
+
+    public double getAmount() {
+<span class="nc" id="L10">        Speed3_Container root = findRootAndCompress();</span>
+<span class="nc" id="L11">        return root.amount;</span>
+    }
+
+    public void addWater(double amount) {
+<span class="nc" id="L15">        Speed3_Container root = findRootAndCompress();</span>
+<span class="nc" id="L16">        root.amount += amount / root.size;</span>
+<span class="nc" id="L17">    }</span>
+
+    public void connectTo(Speed3_Container other) {
+<span class="nc" id="L20">        Speed3_Container root1 = findRootAndCompress();</span>
+<span class="nc" id="L21">        Speed3_Container root2 = other.findRootAndCompress();</span>
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if(root1 == root2) return;</span>
+
+<span class="nc" id="L25">        int size1 = root1.size;</span>
+<span class="nc" id="L26">        int size2 = root2.size;</span>
+
+<span class="nc" id="L28">        double newAmount = (root1.amount * size) + (root2.amount * size2) / (size1 + size2);</span>
+
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (size1 &lt;= size2) {</span>
+<span class="nc" id="L31">            root1.parent = root2;</span>
+<span class="nc" id="L32">            root2.amount = newAmount;</span>
+<span class="nc" id="L33">            root2.size += size1;</span>
+        }else{
+<span class="nc" id="L35">            root2.parent = root1;</span>
+<span class="nc" id="L36">            root1.amount = newAmount;</span>
+<span class="nc" id="L37">            root1.size += size2;</span>
+        }
+<span class="nc" id="L39">    }</span>
+
+    //현재 그룹의 사이즈
+    public int groupSize() {
+<span class="nc" id="L43">        return size;</span>
+    }
+
+    //모든 물을 0으로!!
+    public void flush() {
+<span class="nc" id="L48">        Speed3_Container root = findRootAndCompress();</span>
+<span class="nc" id="L49">        root.amount = 0;</span>
+<span class="nc" id="L50">    }</span>
+
+
+
+    //현재 노드부터 시작해서 루트에 도달하기 전까지 부모의 frac 함수를 호출.
+    private Speed3_Container findRootAndCompress() {
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (parent != this) {</span>
+<span class="nc" id="L57">            parent = parent.findRootAndCompress();</span>
+        }
+<span class="nc" id="L59">        return parent;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

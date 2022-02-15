@@ -1,4 +1,4 @@
-package code.포키.src.main.java.chap05;
+package chap05;
 
 public class Practice4 {
     private static int greatestCommonDivisor(int u, int v) {
@@ -46,7 +46,7 @@ public class Practice4 {
             t = (v - u) / 2;
         } while (t != 0);
 
-        int result = -u * (1 < {} < k);
+        int result = -u * (1 << k);
         assert postCheck(result, dataU, dataV);
         return result;
     }
