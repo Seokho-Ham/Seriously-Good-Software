@@ -4,10 +4,10 @@ import ch5.contracts.Container;
 
 public class UseCase {
     public static void main(String[] args) {
-        ch5.contracts.Container a = new ch5.contracts.Container();
-        ch5.contracts.Container b = new ch5.contracts.Container();
-        ch5.contracts.Container c = new ch5.contracts.Container();
-        ch5.contracts.Container d = new Container();
+        Container a = new Container();
+        Container b = new Container();
+        Container c = new Container();
+        Container d = new Container();
 
         a.addWater(12);
         a.connectTo(b);

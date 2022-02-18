@@ -1,4 +1,4 @@
-package ch1;
+package ch6;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,17 +15,18 @@ public class Container {
 
     public double getAmount() { return amount; }
 
-    public void addWater(double amount) {
+    public double addWater(double amount) {
         double amountPerContainer = amount / group.size();
         if (this.amount + amountPerContainer < 0) {
             throw new IllegalArgumentException("Not enough water to match the addWater request.");
         }
         group.forEach(c -> c.amount += amountPerContainer);
+        return this.amount;
     }
 
-    public void connectTo(Container other) {
-        if (group == other.group) {
-            return;
+    public boolean connectTo(Container other) {
+        if (isConnectedTo(other)) {
+            return false;
         }
         int size1 = group.size();
         int size2 = other.group.size();
@@ -37,5 +38,13 @@ public class Container {
         group.addAll(other.group);
         other.group.forEach(c -> c.group = group);
         group.forEach(c -> c.amount = newAmount);
+        return true;
+    }
+
+    public boolean isConnectedTo(Container other) {
+        if (group == other.group) {
+            return true;
+        }
+        return false;
     }
 }

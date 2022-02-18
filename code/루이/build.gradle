@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("${buildDir}/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        csv.enabled false
+        xml.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            enabled = true
+//            element = 'CLASS'
+//
+//            limit {
+//                counter = 'LINE'
+//                value = 'COVEREDRATIO'
+//                minimum = 0.60
+//            }
+//
+//            excludes = []
+//        }
+//    }
+//}
+//
+//tasks {
+//    jacocoTestCoverageVerification {
+//        violationRules {
+//            rule { limit { minimum = BigDecimal.valueOf(0.2) } }
+//        }
+//    }
+//    check {
+//        dependsOn(jacocoTestCoverageVerification)
+//    }
+//}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.assertj:assertj-core:3.19.0'
+    testImplementation 'org.hamcrest:hamcrest-all:1.3'
+}
+
+test{
+    useJUnitPlatform()
+}
+
+
