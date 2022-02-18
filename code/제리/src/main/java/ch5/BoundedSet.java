@@ -17,7 +17,8 @@ public class BoundedSet<T> {
 		this.deque = new LinkedList<>();
 	}
 
-	public void add(T elem) {
+	public T add(T elem) {
+
 		if (Objects.isNull(elem)) {
 			throw new NullPointerException();
 		}
@@ -25,12 +26,15 @@ public class BoundedSet<T> {
 			if (deque.contains(elem)) {
 				deque.remove(elem);
 				deque.addLast(elem);
+				return null;
 			} else {
-				deque.poll();
+				T poll = deque.poll();
 				deque.addLast(elem);
+				return poll;
 			}
 		} else {
 			deque.addLast(elem);
+			return null;
 		}
 	}
 
